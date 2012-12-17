@@ -4,7 +4,7 @@ function IndexCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
 	$rootScope.query = '';
 	$rootScope.theme = 'all';
 	$rootScope.type = 'all';
-	$rootScope.geo = '0.3';
+	$rootScope.geo = '5';
     navigator.geolocation.getCurrentPosition(function(position) {
       $rootScope.lat = position.coords.latitude;
       $rootScope.lng  = position.coords.longitude;
@@ -17,7 +17,7 @@ function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
 	$rootScope.query = $routeParams.query || '';
 	$rootScope.type = $routeParams.type || 'all';
 	$rootScope.theme = $routeParams.theme || 'all';
-	$rootScope.geo = $routeParams.geo || '0.3';
+	$rootScope.geo = $routeParams.geo || '5';
 	// exponentiel for slider
     $rootScope.dist =  Math.round((Math.exp($rootScope.geo / 10) -0.9)*100)/100;
 	$rootScope.lat = $routeParams.lat || $rootScope.lat;
