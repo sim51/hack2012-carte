@@ -2,12 +2,7 @@
     <div class="span3">
         <div class="facet distance">
             <h3>Distance</h3>
-            <ul>
-              <li ng-repeat="item in facets.geo.ranges">
-                <a ng-show="(geo==item.to && item.from!='100')" ng-click="facetGeo(item.to)" class="selected"> &lt; {{item.to}} Km</a>
-                <a ng-show="(geo!=item.to && item.from!='100')" ng-click="facetGeo(item.to)"> &lt; {{item.to}} Km </a>
-              </li>
-            </ul>
+            <div id="slider"></div>
             <br class="breaker" />
           </div>
         <div class="facet theme">

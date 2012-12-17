@@ -35,30 +35,31 @@ function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
         maxZoom: 17
     });
-    var zoom = 10;
-    switch ($rootScope.geo) {
-     case '0.3':
-	 	zoom = 17;
-	 	break;
-     case '1':
-	 	zoom = 15;
-	 	break;
-     case '5':
-	 	zoom = 14;
-	 	break;
-	 case '10':
-	 	zoom = 13;
-	 	break;
-	 case '20':
-	 	zoom = 12;
-	 	break;
-	 case '50':
-	 	zoom = 11;
-	 	break;
-	 case '100':
-	 	zoom = 10;
-		break;
-	}
+    
+    // zoom level
+    var zoom = 8;
+    if( $rootScope.geo  <= 100){
+    	zoom = 10
+    }
+    if( $rootScope.geo  <= 50){
+    	zoom = 11
+    }
+    if( $rootScope.geo  <= 20){
+    	zoom = 12
+    }
+    if( $rootScope.geo  <= 10){
+    	zoom = 13
+    }
+    if( $rootScope.geo  <= 5){
+    	zoom = 14
+    }
+    if( $rootScope.geo  <= 1){
+    	zoom = 15
+    }
+    if ($rootScope.geo <= 0.3){
+    	zoom = 17;
+    }
+   
     // add the layer to the map, set the view to a given place and zoom
     map.addLayer(cloudmade).setView(new L.LatLng($rootScope.lat, $rootScope.lng), zoom);
     $elastic.search(1, $rootScope.lat, $rootScope.lng, $rootScope.query,  $rootScope.theme, $rootScope.type, $rootScope.geo).then(function(response){
@@ -129,9 +130,13 @@ function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
 		        map.setZoom(zoom);
 			}
 			$('#loading').hide();
+			$( "#slider" ).slider({value:$rootScope.geo, min: 0.3, max: 100, change: function( event, ui ) { 
+				$rootScope.geo = ui.value;
+				document.location.href='#/search/' + $rootScope.lat + '/' + $rootScope.lng + '/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo;
+				$( "#slider" ).slider({value:$rootScope.geo});
+			}});
 		});
     });
-	$('#loading').hide();
 }
 
 /*
