@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr" ng-app="hack2012">
+  <head>
+    <title>LogiSima - Hack2012</title>
+    <meta charset="utf-8">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.ie.css" /><![endif]-->
+    <link href="css/base.css" rel="stylesheet" />
+    <script src="lib/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+  	<script src="js/controllers.js"></script>
+  	<script src="js/filters.js"></script>
+  	<script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a href="./index.html" class="brand">Hack 2012</a>
+        </div>
+      </div>
+    </div>
+
+    <header class="jumbotron subhead ">
+      <div class="container-fluid well" >
+        <form class="form-search" ng-submit="search()">
+          <div id="searchForm">
+            <div>
+                <input id="search" ng-model="query">
+                <input id="geo" type="hidden" ng-model="geo">
+                <input id="type" type="hidden" ng-model="type">
+                <input id="lat" type="hidden" ng-model="lat">
+                <input id="lng" type="hidden" ng-model="lng">
+                <button type="submit" class="btn" ><i class="icon-search"></i></button>
+             </div>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+  	 <div ng-view></div>
+    </div>
+
+    <div id="loading" class="hide">
+      <img src="img/spinner.gif" alt="Laoding" />Patientez, cela charge ...  
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.js"></script>
+    <script type="text/javascript">
+      var musee = L.icon({
+          iconUrl: './img/musee.png',
+          iconSize: [32,37]
+      });
+      var restaurant = L.icon({
+          iconUrl: './img/restaurant.png',
+          iconSize: [32,37]
+      });
+      var cave = L.icon({
+          iconUrl: './img/cave.png',
+          iconSize: [32,37]
+      });
+      var hotel = L.icon({
+          iconUrl: './img/hotel.png',
+          iconSize: [32,37]
+      });
+      var spectacle = L.icon({
+          iconUrl: './img/spectacle.png',
+          iconSize: [32,37]
+      });
+      var bicloo = L.icon({
+          iconUrl: './img/bicloo.png',
+          iconSize: [32,37]
+      });
+      var parking = L.icon({
+          iconUrl: './img/parking.png',
+          iconSize: [32,37]
+      });
+      var marguerite = L.icon({
+          iconUrl: './img/marguerite.png',
+          iconSize: [32,37]
+      });
+      var covoiturage = L.icon({
+          iconUrl: './img/covoiturage.png',
+          iconSize: [32,37]
+      });
+      var aeroport = L.icon({
+          iconUrl: './img/aeroport.png',
+          iconSize: [32,37]
+      });
+      var gare = L.icon({
+          iconUrl: './img/gare.png',
+          iconSize: [32,37]
+      });
+      var port = L.icon({
+          iconUrl: './img/port.png',
+          iconSize: [32,37]
+      });
+      var car = L.icon({
+          iconUrl: './img/car.png',
+          iconSize: [32,37]
+      });
+    </script>
+  </body>
+</html>

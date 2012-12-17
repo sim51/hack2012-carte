@@ -1,0 +1,184 @@
+body{
+	padding-top: 40px;
+    position: relative;
+}
+.ng-cloak {
+  /* this will change to block when scope and angular is ready */
+  display:none;
+}
+.breaker{
+	clear:both;
+}
+h3, h4{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.leaflet-popup-content p {
+	margin : 0px !important;
+}
+.even{
+	background-color:#F5F5F5;
+}
+#searchForm {
+    margin-left: auto;
+    margin-right: auto;
+    width: 420px;
+}
+#searchForm label{
+	display:block;
+	text-align: center;
+}
+#searchForm div {
+	text-align: center;
+    width: 100%;
+}
+h2{
+	font-size:21px;
+	line-height:21px;
+	text-align: center;
+}
+.content h3{
+	font-size:18px;
+	font-weight: normal;
+	border-bottom: 1px solid #DDDDDD;
+}
+.content h4{
+	border-bottom: 1px solid #DDDDDD;
+	font-weight:normal;
+}
+.content h5{
+	margin:0;
+}
+#loading{
+	background-color: #FFFFFF;
+    position: fixed;
+    top: 40px;
+    left: 23px;
+}
+#sidenav {
+	margin-right:0px;
+}
+ul.unstyle{
+	list-style:none;
+}
+ul.repositories li {
+	margin:0px;
+}
+ul.repositories li{
+	padding: 10px;
+	border-radius: 10px;
+}
+div.repository div strong{
+	width:100px;
+}
+div.repository img{
+	display:block;
+	margin:0 auto;
+}
+.members ul{
+	list-style: none;
+}
+.members ul li{
+	display:block;
+	float:left;
+}
+.members img{
+	width:80px;
+}
+#member .user img{
+	display:block;
+	float:left;
+}
+#member .user div.info{
+	float:left;
+}
+#member .user div.info ul{
+	list-style:none;
+}
+#member .user div.info ul li *{
+	display: block;
+	float:left;
+}
+#member .user div.info ul li strong{
+	width:100px;
+}
+member .user  ul.stats li strong{
+	width:100px;
+}
+#member .user div.info ul li{
+	clear:both;
+}
+.commit.row-fluid {
+    margin: 5px 0;
+}
+#legend{
+	top:150px;
+	bottom:40px;
+	right:0px;
+    width:150px;
+	position:fixed;
+	overflow-y:auto;
+	background-color: #F5F5F5;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    padding:10px; 
+}
+#legend ul{
+	margin:0;
+    padding:0;
+}
+#legend ul li {
+	list-style: none;
+	clear:both;
+	padding: 1px 0;
+}
+#legend ul li i{
+	display:block;
+	float:left;
+	width:20px;
+	height:20px;
+}
+#legend ul li div{
+	display:block;
+	float:left;
+	margin-left: 2px;
+}
+svg *{
+	z-index: 9999;
+}
+div#map{
+	margin:0;
+	padding:0;
+	z-index:0;
+	min-height: 500px;
+	background-color:#bed0de;
+	cursor: pointer;
+}
+
+header.subhead{
+	padding:0 30px;
+}
+
+header h3{
+	text-align: center;
+}
+.selected{
+	font-weight: bolder;
+}
+
+.facet ul li {
+	display: block;
+	float: left;
+	margin : 0 10px;
+}
+
+#position{
+	float:right;
+}
+
+#position label {
+	display: inline;
+	padding:15px;
+}

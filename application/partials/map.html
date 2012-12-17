@@ -1,0 +1,43 @@
+<div class="row-fluid content">
+    <div class="span3">
+        <div class="facet distance">
+            <h3>Distance</h3>
+            <ul>
+              <li ng-repeat="item in facets.geo.ranges">
+                <a ng-show="(geo==item.to && item.from!='100')" ng-click="facetGeo(item.to)" class="selected"> &lt; {{item.to}} Km</a>
+                <a ng-show="(geo!=item.to && item.from!='100')" ng-click="facetGeo(item.to)"> &lt; {{item.to}} Km </a>
+              </li>
+            </ul>
+            <br class="breaker" />
+          </div>
+        <div class="facet theme">
+            <h3>Theme</h3>
+            <ul>
+              <li ng-repeat="item in facets.theme.terms">
+                  <a ng_show="theme==item.term" ng-click="facetTheme(item.term)" class="selected">{{item.term}}</a>
+                  <a ng_show="theme!=item.term" ng-click="facetTheme(item.term)">{{item.term}}</a>
+              </li>
+              <li>
+                  <a ng_show="theme!='all'" ng-click="facetTheme('all')">tous</a>
+                  <a ng_show="theme=='all'" ng-click="facetTheme('all')" class="selected">tous</a>
+              </li>
+            </ul>
+            <br class="breaker" />
+          </div>
+          <div class="facet type">
+            <h3>Type</h3>
+            <ul>
+              <li ng-repeat="item in facets.type.terms">
+                  <a ng_show="type==item.term" ng-click="facetType(item.term)" class="selected">{{item.term}}</a>
+                  <a ng_show="type!=item.term" ng-click="facetType(item.term)">{{item.term}}</a>
+              </li>
+              <li>
+                  <a ng_show="type!='all'" ng-click="facetType('all')">tous</a>
+                  <a ng_show="type=='all'" ng-click="facetType('all')" class="selected">tous</a>
+              </li>
+            </ul>
+            <br class="breaker" />
+          </div>
+    </div>
+    <div id="map" class="span9"></div>
+</div>
