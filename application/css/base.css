@@ -56,98 +56,6 @@ h2{
     top: 40px;
     left: 23px;
 }
-#sidenav {
-	margin-right:0px;
-}
-ul.unstyle{
-	list-style:none;
-}
-ul.repositories li {
-	margin:0px;
-}
-ul.repositories li{
-	padding: 10px;
-	border-radius: 10px;
-}
-div.repository div strong{
-	width:100px;
-}
-div.repository img{
-	display:block;
-	margin:0 auto;
-}
-.members ul{
-	list-style: none;
-}
-.members ul li{
-	display:block;
-	float:left;
-}
-.members img{
-	width:80px;
-}
-#member .user img{
-	display:block;
-	float:left;
-}
-#member .user div.info{
-	float:left;
-}
-#member .user div.info ul{
-	list-style:none;
-}
-#member .user div.info ul li *{
-	display: block;
-	float:left;
-}
-#member .user div.info ul li strong{
-	width:100px;
-}
-member .user  ul.stats li strong{
-	width:100px;
-}
-#member .user div.info ul li{
-	clear:both;
-}
-.commit.row-fluid {
-    margin: 5px 0;
-}
-#legend{
-	top:150px;
-	bottom:40px;
-	right:0px;
-    width:150px;
-	position:fixed;
-	overflow-y:auto;
-	background-color: #F5F5F5;
-    border: 1px solid #E3E3E3;
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
-    padding:10px; 
-}
-#legend ul{
-	margin:0;
-    padding:0;
-}
-#legend ul li {
-	list-style: none;
-	clear:both;
-	padding: 1px 0;
-}
-#legend ul li i{
-	display:block;
-	float:left;
-	width:20px;
-	height:20px;
-}
-#legend ul li div{
-	display:block;
-	float:left;
-	margin-left: 2px;
-}
-svg *{
-	z-index: 9999;
-}
 div#map{
 	margin:0;
 	padding:0;
@@ -156,24 +64,20 @@ div#map{
 	background-color:#bed0de;
 	cursor: pointer;
 }
-
 header.subhead{
 	padding:0 30px;
 }
-
 header h3{
 	text-align: center;
 }
 .selected{
 	font-weight: bolder;
 }
-
 .facet ul li {
 	display: block;
 	float: left;
 	margin : 0 10px;
 }
-
 #position{
 	float:right;
 }
@@ -182,3 +86,4 @@ header h3{
 	display: inline;
 	padding:15px;
 }
+form.form-search{ margin:0;}

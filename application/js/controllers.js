@@ -8,9 +8,9 @@ function IndexCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
     navigator.geolocation.getCurrentPosition(function(position) {
       $rootScope.lat = position.coords.latitude;
       $rootScope.lng  = position.coords.longitude;
-      $location.path('/search/' + $rootScope.lat + '/' + $rootScope.lng + '/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo);
+      document.location.href='#/search/' + $rootScope.lat + '/' + $rootScope.lng + '/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo;
     });
-    $location.path('/search/47.21510832641283/-1.556239128112793/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo);
+    document.location.href='#/search/47.21510832641283/-1.556239128112793/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo;
 }
 
 function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
@@ -26,7 +26,7 @@ function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
     var markerLocation = new L.LatLng($rootScope.lat,$rootScope.lng);
 	var myLoc = new L.Marker(markerLocation, {draggable:true});	
 	myLoc.on('dragend', function(e){
-		$location.path('/search/' + e.target._latlng.lat + '/' + e.target._latlng.lng + '/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo);
+		document.location.href='#/search/' + e.target._latlng.lat + '/' + e.target._latlng.lng + '/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo;
 	});
 	myLoc.addTo(map);
 
