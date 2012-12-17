@@ -18,6 +18,8 @@ function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
 	$rootScope.type = $routeParams.type || 'all';
 	$rootScope.theme = $routeParams.theme || 'all';
 	$rootScope.geo = $routeParams.geo || '0.3';
+	// exponentiel for slider
+    $rootScope.dist =  Math.round((Math.exp($rootScope.geo / 10) -0.9)*100)/100;
 	$rootScope.lat = $routeParams.lat || $rootScope.lat;
 	$rootScope.lng = $routeParams.lng || $rootScope.lng;
 	$('#loading').show();
@@ -38,33 +40,37 @@ function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
     
     // zoom level
     var zoom = 8;
-    if( $rootScope.geo  <= 100){
+    if( $rootScope.dist  <= 100){
     	zoom = 10
     }
-    if( $rootScope.geo  <= 50){
+    if( $rootScope.dist  <= 50){
     	zoom = 11
     }
-    if( $rootScope.geo  <= 20){
+    if( $rootScope.dist  <= 20){
     	zoom = 12
     }
-    if( $rootScope.geo  <= 10){
+    if( $rootScope.dist  <= 10){
     	zoom = 13
     }
-    if( $rootScope.geo  <= 5){
+    if( $rootScope.dist  <= 5){
     	zoom = 14
     }
-    if( $rootScope.geo  <= 1){
+    if( $rootScope.dist  <= 3){
     	zoom = 15
     }
-    if ($rootScope.geo <= 0.3){
-    	zoom = 17;
+    if( $rootScope.dist  <= 2){
+    	zoom = 16
+    }
+    if( $rootScope.dist  <= 1){
+    	zoom = 17
     }
    
     // add the layer to the map, set the view to a given place and zoom
     map.addLayer(cloudmade).setView(new L.LatLng($rootScope.lat, $rootScope.lng), zoom);
-    $elastic.search(1, $rootScope.lat, $rootScope.lng, $rootScope.query,  $rootScope.theme, $rootScope.type, $rootScope.geo).then(function(response){
+
+    $elastic.search(1, $rootScope.lat, $rootScope.lng, $rootScope.query,  $rootScope.theme, $rootScope.type, $rootScope.dist).then(function(response){
     	var nb = response.hits.total;
-		$elastic.search(nb, $rootScope.lat, $rootScope.lng, $rootScope.query,  $rootScope.theme, $rootScope.type, $rootScope.geo).then(function(response){
+		$elastic.search(nb, $rootScope.lat, $rootScope.lng, $rootScope.query,  $rootScope.theme, $rootScope.type, $rootScope.dist).then(function(response){
 			$rootScope.facets = response.facets;
 			$scope.hits = response.hits.hits;
 			for (var i=0; i< $scope.hits.length; i++) {
@@ -130,11 +136,16 @@ function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
 		        map.setZoom(zoom);
 			}
 			$('#loading').hide();
-			$( "#slider" ).slider({value:$rootScope.geo, min: 0.3, max: 100, change: function( event, ui ) { 
-				$rootScope.geo = ui.value;
-				document.location.href='#/search/' + $rootScope.lat + '/' + $rootScope.lng + '/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo;
-				$( "#slider" ).slider({value:$rootScope.geo});
-			}});
+			$( "#slider" ).slider({
+					value:$rootScope.geo, 
+					min: 0, 
+					max: 46, 
+					change: function( event, ui ) { 
+						$rootScope.geo = ui.value;
+						document.location.href='#/search/' + $rootScope.lat + '/' + $rootScope.lng + '/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo;
+						
+					}
+			});
 		});
     });
 }
