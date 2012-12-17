@@ -1,6 +1,6 @@
 'use strict';
 
-var elasticurl = 'http://localhost/hack2012';
+var elasticurl = 'http://hack2012.logisima.com/hack2012';
 
 /* Services */
 angular.module('elastic', [ ])
