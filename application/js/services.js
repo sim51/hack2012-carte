@@ -7,14 +7,14 @@ angular.module('elastic', [ ])
     /* Elastic service*/
     .factory('$elastic', function($http, $location, $rootScope){
         return {
-            search:function( lat, lng, query, theme, type, geo ){
+            search:function( nb, lat, lng, query, theme, type, geo ){
                 query += '*';
                 if(theme!='all'){
                     query += ' AND theme:\'' + theme + '\'';
                 }
                 var url = elasticurl + '/_search/?';
                 var data = "{" +
-                                "\"from\" : 0, \"size\" : 200," +
+                                "\"from\" : 0, \"size\" : " + nb +"," +
                                 "\"query\" : {" +
                                 "    \"query_string\" : {\"query\" : \"" + query + "\"}" +
                                 "}," +

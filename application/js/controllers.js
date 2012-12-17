@@ -61,73 +61,75 @@ function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
 	}
     // add the layer to the map, set the view to a given place and zoom
     map.addLayer(cloudmade).setView(new L.LatLng($rootScope.lat, $rootScope.lng), zoom);
-
-	$elastic.search($rootScope.lat, $rootScope.lng, $rootScope.query,  $rootScope.theme, $rootScope.type, $rootScope.geo).then(function(response){
-		$rootScope.facets = response.facets;
-		$scope.hits = response.hits.hits;
-		for (var i=0; i< $scope.hits.length; i++) {
-			var markerLocation = new L.LatLng($scope.hits[i]._source.pin.lat,$scope.hits[i]._source.pin.lon);
-	        var marker = new L.Marker(markerLocation);
-	        switch ($scope.hits[i]._source.type) {
-			 	case 'Monument':
-			 		marker.setIcon(musee);	
-			 		break;
-				case 'Hotel':
-			 		marker.setIcon(hotel);	
-			 		break;
-			 	case 'Restaurant':
-			 		marker.setIcon(restaurant);	
-			 		break;
-			 	case 'Cave':
-			 		marker.setIcon(cave);	
-			 		break;
-			 	case 'Spectacle':
-			 		marker.setIcon(spectacle);	
-			 		break;
-			 	case 'Bicloo':
-			 		marker.setIcon(bicloo);	
-			 		break;
-			 	case 'Parking':
-			 		marker.setIcon(parking);	
-			 		break;
-			 	case 'Marguerite':
-			 		marker.setIcon(marguerite);	
-			 		break;
-			 	case 'Aéroport':
-			 		marker.setIcon(aeroport);	
-			 		break;
-			 	case 'Port':
-			 		marker.setIcon(port);	
-			 		break;
-			 	case 'Gare':
-			 		marker.setIcon(gare);	
-			 		break;
-			 	case 'Gare routière':
-			 		marker.setIcon(car);	
-			 		break;
-			 	case 'Covoiturage':
-			 		marker.setIcon(covoiturage);	
-			 		break;
+    $elastic.search(1, $rootScope.lat, $rootScope.lng, $rootScope.query,  $rootScope.theme, $rootScope.type, $rootScope.geo).then(function(response){
+    	var nb = response.hits.total;
+		$elastic.search(nb, $rootScope.lat, $rootScope.lng, $rootScope.query,  $rootScope.theme, $rootScope.type, $rootScope.geo).then(function(response){
+			$rootScope.facets = response.facets;
+			$scope.hits = response.hits.hits;
+			for (var i=0; i< $scope.hits.length; i++) {
+				var markerLocation = new L.LatLng($scope.hits[i]._source.pin.lat,$scope.hits[i]._source.pin.lon);
+		        var marker = new L.Marker(markerLocation);
+		        switch ($scope.hits[i]._source.type) {
+				 	case 'Monument':
+				 		marker.setIcon(musee);	
+				 		break;
+					case 'Hotel':
+				 		marker.setIcon(hotel);	
+				 		break;
+				 	case 'Restaurant':
+				 		marker.setIcon(restaurant);	
+				 		break;
+				 	case 'Cave':
+				 		marker.setIcon(cave);	
+				 		break;
+				 	case 'Spectacle':
+				 		marker.setIcon(spectacle);	
+				 		break;
+				 	case 'Bicloo':
+				 		marker.setIcon(bicloo);	
+				 		break;
+				 	case 'Parking':
+				 		marker.setIcon(parking);	
+				 		break;
+				 	case 'Marguerite':
+				 		marker.setIcon(marguerite);	
+				 		break;
+				 	case 'Aéroport':
+				 		marker.setIcon(aeroport);	
+				 		break;
+				 	case 'Port':
+				 		marker.setIcon(port);	
+				 		break;
+				 	case 'Gare':
+				 		marker.setIcon(gare);	
+				 		break;
+				 	case 'Gare routière':
+				 		marker.setIcon(car);	
+				 		break;
+				 	case 'Covoiturage':
+				 		marker.setIcon(covoiturage);	
+				 		break;
+				}
+		        marker.bindPopup("<div class=\"popin\">" +
+		        	"<h3>" + $scope.hits[i]._source.name + "</h3>" +
+		        	"<h4>Contact</h4>" +
+		        	"<p><b>Tel : </b>" + $scope.hits[i]._source.tel + "</p>" +
+		        	"<p><b>Mail : </b><a href=\"mailto:" + $scope.hits[i]._source.mail + "\">"+ $scope.hits[i]._source.mail + "</a></p>" +
+		        	"<h4>Adresse</h4>" +
+		        	"<p>" + $scope.hits[i]._source.adress + "<br/>" +
+		        	"" + $scope.hits[i]._source.cp + ", " +  $scope.hits[i]._source.city+ "</p>" +
+		        	"<h4>Information</h4>" +
+		        	"<p><b>Site web : </b><a href=\"http://" + $scope.hits[i]._source.site + "\">" + $scope.hits[i]._source.site + "</a></p>" +
+		        	"<p><b>Complément :</b>" +
+		        	"<p>" + $scope.hits[i]._source.description + "</p>" +
+		        	"</div>"
+		        );
+		        marker.addTo(map);
+		        map.fitBounds(map.getBounds());
+		        map.setZoom(zoom);
 			}
-	        marker.bindPopup("<div class=\"popin\">" +
-	        	"<h3>" + $scope.hits[i]._source.name + "</h3>" +
-	        	"<h4>Contact</h4>" +
-	        	"<p><b>Tel : </b>" + $scope.hits[i]._source.tel + "</p>" +
-	        	"<p><b>Mail : </b><a href=\"mailto:" + $scope.hits[i]._source.mail + "\">"+ $scope.hits[i]._source.mail + "</a></p>" +
-	        	"<h4>Adresse</h4>" +
-	        	"<p>" + $scope.hits[i]._source.adress + "<br/>" +
-	        	"" + $scope.hits[i]._source.cp + ", " +  $scope.hits[i]._source.city+ "</p>" +
-	        	"<h4>Information</h4>" +
-	        	"<p><b>Site web : </b><a href=\"http://" + $scope.hits[i]._source.site + "\">" + $scope.hits[i]._source.site + "</a></p>" +
-	        	"<p><b>Complément :</b>" +
-	        	"<p>" + $scope.hits[i]._source.description + "</p>" +
-	        	"</div>"
-	        );
-	        marker.addTo(map);
-	        map.fitBounds(map.getBounds());
-	        map.setZoom(zoom);
-		}
-		$('#loading').hide();
+			$('#loading').hide();
+		});
     });
 	$('#loading').hide();
 }
