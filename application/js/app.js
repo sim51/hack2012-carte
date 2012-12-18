@@ -13,7 +13,7 @@ app.config(function($routeProvider) {
 
 app.run(function($rootScope, $elastic, $location){
 	$rootScope.search = function() {
-		$location.path('/search/' + $rootScope.lat + '/' + $rootScope.lng + '/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo);
+		$location.path('/search/' + $rootScope.lat + '/' + $rootScope.lng + '/' + $rootScope.query + '/all/all/' + $rootScope.geo);
 	}
 
 	$rootScope.facetTheme = function(theme) {
