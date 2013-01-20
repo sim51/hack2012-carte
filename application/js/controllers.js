@@ -30,6 +30,7 @@ function SearchCtrl($scope, $rootScope, $routeParams, $location, $elastic) {
 	myLoc.on('dragend', function(e){
 		document.location.href='#/search/' + e.target._latlng.lat + '/' + e.target._latlng.lng + '/' + $rootScope.query + '/' + $rootScope.theme + '/' + $rootScope.type + '/' + $rootScope.geo;
 	});
+	myLoc.setIcon(ici);	
 	myLoc.addTo(map);
 
     // create a CloudMade tile layer with style #997 (or use other provider of your choice)
